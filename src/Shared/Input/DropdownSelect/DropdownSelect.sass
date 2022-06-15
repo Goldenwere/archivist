@@ -1,0 +1,51 @@
+@import 'src/Variables.sass'
+@import 'src/Shared/Input/Input.sass'
+
+.dropdown
+  position: relative
+  button
+    &::after
+      content: ""
+      position: absolute
+      top: 1rem
+      right: 1rem
+      width: 2rem
+      height: 2rem
+      -webkit-mask: url('src/Assets/arrow.svg')
+      -webkit-mask-size: 2rem
+      background: $brand-dark-a
+      @include brand-transition(0.5s, transform, opacity)
+      transform: scaleY(1)
+    &.open
+      &::after
+        transform: scaleY(-1)
+  .dropdown-content
+    position: absolute
+    left: 0
+    right: 0
+    background-color: $brand-light-a
+    box-shadow: 0 0 0.75rem 0.25rem transparentize($brand-dark-a, 0.75)
+    color: $brand-dark-a
+    transform: scaleY(0)
+    transform-origin: top center
+    pointer-events: none
+    padding: 1rem
+    border-radius: 0.5rem
+    opacity: 0
+    @include brand-transition(0.5s, transform, opacity)
+    &.open
+      transform: scaleY(1)
+      opacity: 1
+      pointer-events: all
+    ul
+      list-style: none
+      padding-left: 0
+      margin: 0
+      li
+        padding: 0.5rem
+        border-radius: 0.5rem
+        cursor: pointer
+        &.selected
+          background-color: transparentize($brand-blue-a, 0.25)
+        &:hover
+          background-color: transparentize($brand-gold-a, 0.25)
