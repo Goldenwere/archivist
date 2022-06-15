@@ -4,3 +4,8 @@ $brand-blue-a: #8cd3ea
 $brand-blue-b: #0c84ab
 $brand-gold-a: #fecf59
 $brand-gold-b: #e4b540
+
+@mixin brand-transition($duration, $selectors...)
+  transition-property: $selectors
+  transition-duration: $duration
+  transition-timing-function: cubic-bezier(.25,.5,0,1)
