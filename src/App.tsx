@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import logo from './logo.svg'
 import './App.sass'
+import DropdownSelect from './Shared/Input/DropdownSelect/DropdownSelect'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -9,6 +10,15 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <div
+          className="testing"
+        >
+          <h2>Component Testing</h2>
+          <DropdownSelect
+            options={['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5']}
+            label={'Test Dropdown Select'}
+          />
+        </div>
         <p>Hello Vite + React!</p>
         <p>
           <button type="button" onClick={() => setCount((count) => count + 1)}>
