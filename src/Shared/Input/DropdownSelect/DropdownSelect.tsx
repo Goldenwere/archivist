@@ -1,9 +1,21 @@
-import { useState } from 'react'
+import {
+  useState,
+} from 'react'
 import './DropdownSelect.sass'
 
 function DropdownSelect(props: any) {
+  const {
+    label,
+    onChange,
+    options,
+    value,
+  } = props
   let [isOpen, setOpen] = useState(false)
-  let [selection, setSelection] = useState(props.options[0])
+
+  const optionOnClick = (option: any) => {
+    onChange(option);
+    setOpen(false);
+  }
 
   return (
     <div
@@ -13,13 +25,13 @@ function DropdownSelect(props: any) {
         <p
           className="label"
         >
-          { props.label }
+          { label }
         </p>
         <button
           className={`${isOpen ? 'open' : ''}`}
           onClick={() => setOpen(!isOpen)}
         >
-          { selection }
+          { value }
         </button>
       </div>
       <div
@@ -27,11 +39,11 @@ function DropdownSelect(props: any) {
       >
         <ul>
           {
-            props.options.map((option: any) =>
+            options.map((option: any) =>
               <li
                 key={option}
-                onClick={() => { setSelection(option); setOpen(false); }}
-                className={`${option === selection ? 'selected' : ''}`}
+                onClick={() => { optionOnClick(option) }}
+                className={`${option === value ? 'selected' : ''}`}
               >
                 { option }
               </li>
