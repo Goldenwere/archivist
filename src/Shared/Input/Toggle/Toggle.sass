@@ -20,6 +20,9 @@
       background-repeat: no-repeat
       margin: 0.25rem
       border-radius: 0.5rem
+      transform: scale(0)
+      @include brand-transition(0.25s, background scale)
     &:checked::before
+      transform: scale(1)
       background-size: 70% 70%
       background-color: $brand-gold-a
