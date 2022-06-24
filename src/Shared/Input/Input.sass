@@ -1,3 +1,5 @@
+@import 'src/Variables.sass'
+
 .input
   width: 100%
   button,
@@ -8,8 +10,8 @@
     border-radius: 0.5rem
     width: 100%
     text-align: left
-    font-size: 2rem
-    height: 4rem
+    font-size: calc($size-input / 2)
+    height: $size-input
     cursor: pointer
     position: relative
     box-sizing: border-box
@@ -22,4 +24,4 @@
     text-align: left
     margin: 0
     color: $brand-dark-a
-    font-size: 1.5rem
+    font-size: $size-label
