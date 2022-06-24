@@ -3,6 +3,7 @@ import './TextEntry.sass'
 
 function TextEntry(props: any) {
   const {
+    label,
     onChange,
     value,
   } = props
@@ -19,7 +20,7 @@ function TextEntry(props: any) {
         <p
           className="label"
         >
-          { props.label }
+          { label }
         </p>
       </div>
       <div>
