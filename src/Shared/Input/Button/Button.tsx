@@ -2,8 +2,9 @@ import './Button.sass'
 
 function Button(props: any) {
   const {
-    onClick,
+    icon,
     label,
+    onClick,
   } = props
 
   const buttonOnClick = () => {
@@ -16,7 +17,8 @@ function Button(props: any) {
     >
       <button
         type="button"
-        onClick={buttonOnClick}
+        onClick={ buttonOnClick }
+        style={{ backgroundImage: icon }}
       >
         { label }
       </button>

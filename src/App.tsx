@@ -35,6 +35,7 @@ function App() {
           <Button
             onClick={() => setCount(count + 1)}
             label={`count is: ${count}`}
+            icon={`url(https://gallery.lightling.xyz/images/moon.svg)`}
           />
           <Toggle
             onChange={(val: boolean) => setToggleValue(val)}
