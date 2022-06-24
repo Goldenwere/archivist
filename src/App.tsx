@@ -3,6 +3,7 @@ import logo from './logo.svg'
 import './App.sass'
 import DropdownSelect from './Shared/Input/DropdownSelect/DropdownSelect'
 import TextEntry from './Shared/Input/TextEntry/TextEntry'
+import Button from './Shared/Input/Button/Button'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -28,17 +29,16 @@ function App() {
             value={textValue}
             onChange={(val: string) => setTextValue(val)}
           />
+          <Button
+            onClick={() => setCount(count + 1)}
+            label={`count is: ${count}`}
+          />
         </div>
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
         <p>
           <ul>
             <li>Dropdown is: {dropdownValue}</li>
             <li>Text is: {textValue}</li>
+            <li>count is: {count}</li>
           </ul>
         </p>
         <p>
