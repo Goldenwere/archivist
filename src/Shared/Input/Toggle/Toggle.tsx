@@ -9,7 +9,7 @@ function Toggle(props: any) {
   } = props
 
   const inputOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-    onChange(e.target?.value)
+    onChange(e.target?.checked)
   }
 
   return (
@@ -27,6 +27,7 @@ function Toggle(props: any) {
         <input
           type="checkbox"
           value={value}
+          defaultChecked={value}
           onChange={inputOnChange}
         />
       </div>
