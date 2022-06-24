@@ -1,4 +1,7 @@
-import {
+import React, {
+  KeyboardEvent,
+  useEffect,
+  useRef,
   useState,
 } from 'react'
 import './DropdownSelect.sass'
@@ -12,9 +15,26 @@ function DropdownSelect(props: any) {
   } = props
   let [isOpen, setOpen] = useState(false)
 
+  const itemElements = useRef(new Array())
+  const parentElement = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    if (isOpen) {
+      itemElements.current[0].focus()
+    }
+  })
+
   const optionOnClick = (option: any) => {
     onChange(option);
     setOpen(false);
+  }
+
+  const optionOnKeyDown = (event: KeyboardEvent, option: any) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      parentElement.current?.focus()
+      optionOnClick(option)
+    }
   }
 
   return (
@@ -30,6 +50,7 @@ function DropdownSelect(props: any) {
         <button
           className={`${isOpen ? 'open' : ''}`}
           onClick={() => setOpen(!isOpen)}
+          ref={parentElement}
         >
           { value }
         </button>
@@ -42,8 +63,11 @@ function DropdownSelect(props: any) {
             options.map((option: any) =>
               <li
                 key={option}
+                ref={(element: HTMLLIElement) => itemElements.current.push(element)}
                 onClick={() => { optionOnClick(option) }}
+                onKeyDown={(e: KeyboardEvent) => optionOnKeyDown(e, option)}
                 className={`${option === value ? 'selected' : ''}`}
+                tabIndex={isOpen ? 0 : -1}
               >
                 { option }
               </li>
