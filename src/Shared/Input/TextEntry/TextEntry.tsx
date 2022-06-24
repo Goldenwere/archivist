@@ -4,6 +4,7 @@ import './TextEntry.sass'
 function TextEntry(props: any) {
   const {
     label,
+    isPassword,
     onChange,
     value,
   } = props
@@ -25,7 +26,7 @@ function TextEntry(props: any) {
       </div>
       <div>
         <input
-          type="text"
+          type={isPassword ? "password" : "text"}
           value={value}
           onChange={inputOnChange}
         />
