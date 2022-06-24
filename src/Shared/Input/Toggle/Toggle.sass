@@ -1,0 +1,25 @@
+@import 'src/Variables.sass'
+@import 'src/Shared/Input/Input.sass'
+
+.checkbox
+  input[type=checkbox]
+    appearance: none
+    position: relative
+    width: 3rem
+    height: 3rem
+    &::before
+      content: ""
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      background-color: transparent
+      background-size: 100% 100%
+      background-position: center center
+      background-repeat: no-repeat
+      margin: 0.25rem
+      border-radius: 0.5rem
+    &:checked::before
+      background-size: 70% 70%
+      background-color: $brand-gold-a
