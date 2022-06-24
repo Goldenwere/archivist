@@ -9,6 +9,7 @@ import Toggle from './Shared/Input/Toggle/Toggle'
 function App() {
   const [count, setCount] = useState(0)
   const [textValue, setTextValue] = useState('default')
+  const [passValue, setPassValue] = useState('')
   const [dropdownValue, setDropdownValue] = useState('Item 3')
   const [toggleValue, setToggleValue] = useState(true)
 
@@ -40,6 +41,12 @@ function App() {
             label={'Toggle'}
             value={toggleValue}
           />
+          <TextEntry
+            label={'Test Password Entry'}
+            value={passValue}
+            isPassword={true}
+            onChange={(val: string) => setPassValue(val)}
+          />
         </div>
         <p>
           <ul>
@@ -47,6 +54,7 @@ function App() {
             <li>Text is: {textValue}</li>
             <li>count is: {count}</li>
             <li>toggle is: {toggleValue ? 'checked' : 'unchecked'}</li>
+            <li>Password is: {passValue}</li>
           </ul>
         </p>
         <p>
