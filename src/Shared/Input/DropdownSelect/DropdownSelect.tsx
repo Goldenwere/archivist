@@ -12,6 +12,7 @@ function DropdownSelect(props: any) {
     onChange,
     options,
     value,
+    disabled,
   } = props
   let [isOpen, setOpen] = useState(false)
 
@@ -39,7 +40,7 @@ function DropdownSelect(props: any) {
 
   return (
     <div
-      className="dropdown input"
+      className={`dropdown input ${disabled ? 'disabled' : ''}`}
     >
       <div>
         <p
@@ -51,12 +52,13 @@ function DropdownSelect(props: any) {
           className={`${isOpen ? 'open' : ''}`}
           onClick={() => setOpen(!isOpen)}
           ref={parentElement}
+          tabIndex={disabled ? -1 : 0}
         >
           { value }
         </button>
       </div>
       <div
-        className={`dropdown-content + ${isOpen ? 'open' : ''}`}
+        className={`dropdown-content ${isOpen ? 'open' : ''}`}
       >
         <ul>
           {

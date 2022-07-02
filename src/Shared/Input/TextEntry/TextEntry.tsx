@@ -7,6 +7,7 @@ function TextEntry(props: any) {
     isPassword,
     onChange,
     value,
+    disabled,
   } = props
 
   const inputOnChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -15,7 +16,7 @@ function TextEntry(props: any) {
 
   return (
     <div
-      className="text-entry input"
+      className={`text-entry input ${disabled ? 'disabled' : ''}`}
     >
       <div>
         <p
@@ -29,6 +30,7 @@ function TextEntry(props: any) {
           type={isPassword ? "password" : "text"}
           value={value}
           onChange={inputOnChange}
+          tabIndex={disabled ? -1 : 0}
         />
       </div>
     </div>

@@ -5,6 +5,7 @@ function Button(props: any) {
     icon,
     label,
     onClick,
+    disabled,
   } = props
 
   const buttonOnClick = () => {
@@ -13,12 +14,13 @@ function Button(props: any) {
 
   return (
     <div
-      className="button input"
+      className={`button input ${disabled ? 'disabled' : ''}`}
     >
       <button
         type="button"
         onClick={ buttonOnClick }
         style={{ backgroundImage: icon }}
+        tabIndex={disabled ? -1 : 0}
       >
         { label }
       </button>

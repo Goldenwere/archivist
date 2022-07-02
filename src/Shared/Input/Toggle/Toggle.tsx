@@ -6,6 +6,7 @@ function Toggle(props: any) {
     label,
     onChange,
     value,
+    disabled,
   } = props
 
   const inputOnChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -14,7 +15,7 @@ function Toggle(props: any) {
 
   return (
     <div
-      className="checkbox input"
+      className={`checkbox input ${disabled ? 'disabled' : ''}`}
     >
       <div>
         <p
@@ -29,6 +30,7 @@ function Toggle(props: any) {
           value={value}
           defaultChecked={value}
           onChange={inputOnChange}
+          tabIndex={disabled ? -1 : 0}
         />
       </div>
     </div>
