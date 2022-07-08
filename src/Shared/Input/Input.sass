@@ -16,6 +16,9 @@
     cursor: pointer
     position: relative
     box-sizing: border-box
+    text-overflow: ellipsis
+    white-space: nowrap
+    overflow: hidden
     @include brand-transition(0.25s, background)
     &:hover
       background-color: darken($brand-gold-b, 15%)
