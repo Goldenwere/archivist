@@ -1,9 +1,10 @@
 import { GlobalArchiveOption } from 'src/Types/Jobs/GlobalArchiveOption'
 
-import EditItems from './EditItems/EditItems'
+import EditTasks from './EditTasks/EditTasks'
 import EditGlobals from './EditGlobals/EditGlobals'
 
 import './EditJob.sass'
+import { JobTask } from 'src/Types/Jobs/JobTask'
 
 function EditJob() {
   const testGlobals: GlobalArchiveOption = {
@@ -19,6 +20,22 @@ function EditJob() {
     }
   }
 
+  const testJobs: JobTask[] = [
+    {
+      name: 'Test 1 Has A Long Name To Test With',
+      guid: '12345',
+      options: {
+        format: testGlobals.defaultFormat,
+        encryption: testGlobals.defaultEncryption,
+        source: '',
+        destination: testGlobals.defaultDestination,
+        compression: testGlobals.defaultCompression,
+        fileName: '',
+        exclusions: [],
+      }
+    }
+  ]
+
   return (
     <div
       id="edit-job"
@@ -26,7 +43,8 @@ function EditJob() {
       <EditGlobals
         globals={testGlobals}
       />
-      <EditItems
+      <EditTasks
+        tasks={testJobs}
       />
     </div>
   )
