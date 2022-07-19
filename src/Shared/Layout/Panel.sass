@@ -4,9 +4,11 @@
   background-color: $brand-blue-a
   padding: calc($size-round * 2)
   border-radius: $size-round
-  display: grid
+  display: flex
+  flex-direction: column
   align-content: baseline
-  grid-template-columns: 1fr
   grid-gap: $size-round
+  max-height: calc(100% - ($size-round * 4))
+  overflow-y: scroll
   h2
     margin-top: 0
