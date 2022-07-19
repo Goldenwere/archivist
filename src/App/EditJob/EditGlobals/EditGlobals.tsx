@@ -7,15 +7,16 @@ import TextEntry from 'src/Shared/Input/TextEntry/TextEntry'
 
 import './EditGlobals.sass'
 
-type EditGlobalsProps = {
+export type EditGlobalsProps = {
   globals: GlobalArchiveOption,
+  onModifyDestination: (val: string) => void,
+  onModifyCompressionLevel: (val: string) => void,
+  onModifyCompressionMethod: (val: string) => void,
+  onModifyPassword: (val: string) => void,
+  onModifyEncryptionMethod: (val: string) => void,
 }
 
 function EditGlobals(props: EditGlobalsProps) {
-  const {
-    globals,
-  } = props
-
   return (
     <div
       id="edit-globals"
@@ -24,33 +25,33 @@ function EditGlobals(props: EditGlobalsProps) {
       <h2>Edit Globals</h2>
       <TextEntry
         label={'Default Destination'}
-        value={globals.defaultDestination}
-        onChange={(val: string) => console.log(val)}
+        value={props.globals.defaultDestination}
+        onChange={(val: string) => props.onModifyDestination(val)}
       />
       <DropdownSelect
         options={CompressionLevelOptions}
         label={'Default Compression Level'}
-        value={globals.defaultCompression.level}
-        onChange={(val: string) => console.log(val)}
+        value={props.globals.defaultCompression.level}
+        onChange={(val: string) => props.onModifyCompressionLevel(val)}
       />
       <DropdownSelect
         options={CompressionMethodOptions}
         label={'Default Compression Method'}
-        value={globals.defaultCompression.level === 0 ? 'copy' : globals.defaultCompression.method}
-        onChange={(val: string) => console.log(val)}
-        disabled={globals.defaultCompression.level === 0 ? true : false}
+        value={props.globals.defaultCompression.level === 0 ? 'copy' : props.globals.defaultCompression.method}
+        onChange={(val: string) => props.onModifyCompressionMethod(val)}
+        disabled={props.globals.defaultCompression.level === 0 ? true : false}
       />
       <TextEntry
         label={'Default Password'}
-        value={globals.defaultEncryption.password}
-        onChange={(val: string) => console.log(val)}
+        value={props.globals.defaultEncryption.password}
+        onChange={(val: string) => props.onModifyPassword(val)}
       />
       <DropdownSelect
         options={EncryptionMethodOptions}
         label={'Default Encryption Method'}
-        value={globals.defaultEncryption.password === '' ? 'none' : globals.defaultEncryption.method}
-        onChange={(val: string) => console.log(val)}
-        disabled={globals.defaultEncryption.password === '' ? true : false}
+        value={props.globals.defaultEncryption.password === '' ? 'none' : props.globals.defaultEncryption.method}
+        onChange={(val: string) => props.onModifyEncryptionMethod(val)}
+        disabled={props.globals.defaultEncryption.password === '' ? true : false}
       />
     </div>
   )

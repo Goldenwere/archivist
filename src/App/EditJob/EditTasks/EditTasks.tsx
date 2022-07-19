@@ -4,15 +4,11 @@ import { JobTask } from 'src/Types/Jobs/JobTask'
 
 import './EditTasks.sass'
 
-type EditItemsProps = {
+export type EditTasksProps = {
   tasks: JobTask[],
 }
 
-function EditItems(props: EditItemsProps) {
-  const {
-    tasks,
-  } = props
-
+function EditTasks(props: EditTasksProps) {
   return (
     <div
       id="edit-tasks"
@@ -20,7 +16,7 @@ function EditItems(props: EditItemsProps) {
     >
       <h2>Edit Tasks</h2>
       {
-        tasks.map((task) => {
+        props.tasks.map((task) => {
           return (
             <TaskElement
               task={task}
@@ -32,4 +28,4 @@ function EditItems(props: EditItemsProps) {
   )
 }
 
-export default EditItems
+export default EditTasks

@@ -1,6 +1,7 @@
 import { CompressionLevel } from "src/Types/Jobs/CompressionLevel"
 import { CompressionMethod } from "src/Types/Jobs/CompressionMethod"
 import { EncryptionMethod } from "src/Types/Jobs/EncryptionMethod"
+import { GlobalArchiveOption } from "src/Types/Jobs/GlobalArchiveOption"
 import { TaskArchiveOption } from "src/Types/Jobs/TaskArchiveOption"
 
 export type ValidOptions = {
@@ -192,6 +193,43 @@ export const validateOptions = (options: TaskArchiveOption): TaskArchiveOption =
     }
   } else {
     validated.encryption.password = ''
+  }
+
+  return validated
+}
+
+/**
+ * Validates provided options to ensure settings are not incompatible.
+ * If incompatibilities are found, they are set to defaults in the returned copy.
+ * @param options The options to validate
+ * @returns A validated copy of the options provided
+ */
+ export const validateGlobals = (options: GlobalArchiveOption): GlobalArchiveOption => {
+  let validated: GlobalArchiveOption = {
+    ... options
+  }
+
+  if (validated.defaultCompression.method !== 'copy') {
+    if (!ValidSettings[options.defaultFormat].compressionLevel
+      .includes(validated.defaultCompression.level)) {
+      validated.defaultCompression.level = ValidSettings[options.defaultFormat].defaultCompressionLevel
+    }
+
+    if (!ValidSettings[options.defaultFormat].compressionMethod
+      .includes(validated.defaultCompression.method)) {
+      validated.defaultCompression.method = ValidSettings[options.defaultFormat].defaultCompressionMethod
+    }
+  } else {
+    validated.defaultCompression.level = 0
+  }
+
+  if (validated.defaultEncryption.method !== 'none') {
+    if (!ValidSettings[options.defaultFormat].encryptionMethod
+      .includes(validated.defaultEncryption.method)) {
+      validated.defaultEncryption.method = ValidSettings[options.defaultFormat].defaultEncryptionMethod
+    }
+  } else {
+    validated.defaultEncryption.password = ''
   }
 
   return validated
