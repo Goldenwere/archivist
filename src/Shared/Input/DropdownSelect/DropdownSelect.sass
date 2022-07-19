@@ -40,7 +40,10 @@
       pointer-events: all
     ul
       list-style: none
-      padding-left: 0
+      overflow-y: auto
+      overflow-x: visible
+      max-height: calc($size-input * 4)
+      padding: $size-round
       margin: 0
       li
         padding: 0.5rem

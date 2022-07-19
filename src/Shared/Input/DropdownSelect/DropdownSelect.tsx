@@ -1,4 +1,5 @@
 import React, {
+  FocusEvent,
   KeyboardEvent,
   useEffect,
   useRef,
@@ -38,6 +39,16 @@ function DropdownSelect(props: any) {
     }
   }
 
+  const onBlur = (event: FocusEvent) => {
+    const currentTarget = event.currentTarget
+
+    requestAnimationFrame(() => {
+      if (!currentTarget.contains(document.activeElement)) {
+        setOpen(false)
+      }
+    })
+  }
+
   return (
     <div
       className={`dropdown input ${disabled ? 'disabled' : ''}`}
@@ -60,7 +71,9 @@ function DropdownSelect(props: any) {
       <div
         className={`dropdown-content ${isOpen ? 'open' : ''}`}
       >
-        <ul>
+        <ul
+          onBlur={(e: FocusEvent) => onBlur(e)}
+        >
           {
             options.map((option: any) =>
               <li
